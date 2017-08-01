@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { AngularFireAuth } from 'angularfire2/auth';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the UserdataProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 @Injectable()
 export class UserdataProvider {
 
-  constructor(public http: Http) {
-    console.log('Hello UserdataProvider Provider');
-  }
+  constructor(private ngFireAuth: AngularFireAuth) {  }
 
+  createUser(name: string, email: string, password: string) {
+    // this.ngFireAuth.auth.signInWithEmailAndPassword(email, password)
+    //   .catch(function(error) {
+    //   console.log("Error:"+JSON.stringify(error));
+    // });
+  }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { AlertController } from 'ionic-angular';
+import { UserdataProvider } from '../../providers/userdata/userdata';
 
 @Component({
   selector: 'ib-signup',
@@ -8,11 +9,11 @@ import { AlertController } from 'ionic-angular';
 })
 export class SignupComponent {
 
-  constructor(public alertCtrl: AlertController) {
-    this.showPrompt(); // Move to wherever applicable
-  }
+  constructor(public alertCtrl: AlertController, public userDataProvider: UserdataProvider) {  }
 
-  showPrompt() {
+  ionViewDidLoad() {  }
+
+  ngAfterViewInit() {
     let prompt = this.alertCtrl.create({
       title: 'Signup',
       message: "The following information will help us know you better",
@@ -27,7 +28,8 @@ export class SignupComponent {
         },
         {
           name: 'password',
-          placeholder: 'Password'
+          placeholder: 'Password',
+          type: 'password'
         },
       ],
       buttons: [
@@ -40,7 +42,8 @@ export class SignupComponent {
         {
           text: 'Save',
           handler: data => {
-            console.log('Saved clicked');
+            console.log('Saved clicked: '+data.name);
+            this.userDataProvider.createUser(data.name, data.mail, data.password);
           }
         }
       ]
