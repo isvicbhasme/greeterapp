@@ -16,6 +16,7 @@ import { ComponentsModule } from '../components/components.module';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserdataProvider } from '../providers/userdata/userdata';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDIhxcXTOFr3kG02KH9doKkmwAr4UMu__Q",
@@ -53,7 +54,8 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserdataProvider
+    UserdataProvider,
+    NativeStorage,
   ]
 })
 export class AppModule {}

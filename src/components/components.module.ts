@@ -6,7 +6,6 @@ import { UserdataProvider } from '../providers/userdata/userdata';
 @NgModule({
 	declarations: [SignupComponent],
 	imports: [],
-	exports: [SignupComponent],
-	providers: [UserdataProvider,]
+	exports: [SignupComponent]
 })
 export class ComponentsModule {}
