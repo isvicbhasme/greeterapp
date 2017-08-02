@@ -9,21 +9,26 @@ import { UserdataProvider } from '../../providers/userdata/userdata';
 })
 export class SignupComponent {
 
+  private registerDlg: any;
+  private loginDlg: any;
+
   constructor(public alertCtrl: AlertController, public userDataProvider: UserdataProvider) {  }
 
-  ionViewDidLoad() {  }
-
   ngAfterViewInit() {
-    let prompt = this.alertCtrl.create({
+    this.createRegistrationDlg();
+  }
+
+  createRegistrationDlg() {
+    this.registerDlg = this.alertCtrl.create({
       title: 'Signup',
-      message: "The following information will help us know you better",
+      message: "I would like to know you better",
       inputs: [
         {
           name: 'name',
           placeholder: 'Full Name'
         },
         {
-          name: 'mail',
+          name: 'email',
           placeholder: 'E-Mail'
         },
         {
@@ -34,21 +39,71 @@ export class SignupComponent {
       ],
       buttons: [
         {
+          text: 'Login',
+          handler: data => {
+            this.createLoginDlg();
+          }
+        },
+        {
+          text: 'Register',
+          handler: data => {
+            this.userDataProvider.createUser(data.name, data.email, data.password);
+          }
+        },{
           text: 'Cancel',
           handler: data => {
             console.log('Cancel clicked');
           }
         },
-        {
-          text: 'Save',
-          handler: data => {
-            console.log('Saved clicked: '+data.name);
-            this.userDataProvider.createUser(data.name, data.mail, data.password);
-          }
-        }
       ]
     });
-    prompt.present();
+    this.showRegistrationDlg();
+  }
+
+  createLoginDlg() {
+    this.loginDlg = this.alertCtrl.create({
+      title: 'Login',
+      message: "Hmmm, you look familiar...",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'E-Mail'
+        },
+        {
+          name: 'password',
+          placeholder: 'Password',
+          type: 'password'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Login',
+          handler: data => {
+            this.userDataProvider.loginUser(data.email, data.password);
+          }
+        },
+        {
+          text: 'Register',
+          handler: data => {
+            this.createRegistrationDlg();
+          }
+        },{
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+      ]
+    });
+    this.showLoginDlg();
+  }
+
+  showRegistrationDlg() {
+    this.registerDlg.present();
+  }
+
+  showLoginDlg() {
+    this.loginDlg.present();
   }
 
 }
