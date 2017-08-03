@@ -11,6 +11,8 @@ export class SignupComponent {
 
   private registerDlg: any;
   private loginDlg: any;
+  private registerMsg: string = "I would like to know you better";
+  private loginMsg: string = "Hmmm, you look familiar...";
 
   constructor(public alertCtrl: AlertController, public userDataProvider: UserdataProvider) {  }
 
@@ -21,7 +23,8 @@ export class SignupComponent {
   createRegistrationDlg() {
     this.registerDlg = this.alertCtrl.create({
       title: 'Signup',
-      message: "I would like to know you better",
+      message: this.registerMsg,
+      enableBackdropDismiss: false,
       inputs: [
         {
           name: 'name',
@@ -47,7 +50,12 @@ export class SignupComponent {
         {
           text: 'Register',
           handler: data => {
-            this.userDataProvider.createUser(data.name, data.email, data.password);
+            this.userDataProvider.createUser(data.name, data.email, data.password)
+            .then(user => {})
+            .catch(errMsg => {
+              this.registerMsg = this.highlightMessage(errMsg);
+              this.createRegistrationDlg();
+            });
           }
         },{
           text: 'Cancel',
@@ -63,7 +71,8 @@ export class SignupComponent {
   createLoginDlg() {
     this.loginDlg = this.alertCtrl.create({
       title: 'Login',
-      message: "Hmmm, you look familiar...",
+      message: this.loginMsg,
+      enableBackdropDismiss: false,
       inputs: [
         {
           name: 'email',
@@ -79,7 +88,12 @@ export class SignupComponent {
         {
           text: 'Login',
           handler: data => {
-            this.userDataProvider.loginUser(data.email, data.password);
+            this.userDataProvider.loginUser(data.email, data.password)
+            .then(user => {})
+            .catch(errMsg => {
+              this.loginMsg = this.highlightMessage(errMsg);
+              this.createLoginDlg();
+            });
           }
         },
         {
@@ -106,4 +120,7 @@ export class SignupComponent {
     this.loginDlg.present();
   }
 
+  highlightMessage(msg: string) {
+    return "<div class='errMsg' style='color:red'>"+msg+"</div>";
+  }
 }
