@@ -5,6 +5,7 @@ import { MyApp } from './app.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -17,6 +18,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserdataProvider } from '../providers/userdata/userdata';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { DbmodelProvider } from '../providers/dbmodel/dbmodel';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDIhxcXTOFr3kG02KH9doKkmwAr4UMu__Q",
@@ -41,6 +43,7 @@ export const firebaseConfig = {
     ComponentsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -56,6 +59,7 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserdataProvider,
     NativeStorage,
+    DbmodelProvider,
   ]
 })
 export class AppModule {}
