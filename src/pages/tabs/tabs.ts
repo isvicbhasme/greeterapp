@@ -30,5 +30,9 @@ export class TabsPage {
         this.isUserDataInStore = false;
       });
   }
+
+  private handleUserSignIn(user: IUserModel) {
+    this.isUserDataInStore = true;
+  }
 }
 

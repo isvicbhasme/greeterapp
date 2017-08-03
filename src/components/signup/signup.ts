@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
+import { IUserModel } from "../../models/iusermodel";
 import { AlertController } from 'ionic-angular';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 
@@ -9,6 +10,7 @@ import { UserdataProvider } from '../../providers/userdata/userdata';
 })
 export class SignupComponent {
 
+  @Output() signedInUser = new EventEmitter();
   private registerDlg: any;
   private loginDlg: any;
   private registerMsg: string = "I would like to know you better";
@@ -42,22 +44,23 @@ export class SignupComponent {
       ],
       buttons: [
         {
+          text: 'Register',
+          handler: data => {
+            this.userDataProvider.createUser(data.name, data.email, data.password)
+            .then(user => this.fireSuccessEvent(user))
+            .catch(errMsg => {
+              this.registerMsg = this.highlightMessage(errMsg);
+              this.createRegistrationDlg();
+            });
+          }
+        },
+        {
           text: 'Login',
           handler: data => {
             this.createLoginDlg();
           }
         },
         {
-          text: 'Register',
-          handler: data => {
-            this.userDataProvider.createUser(data.name, data.email, data.password)
-            .then(user => {})
-            .catch(errMsg => {
-              this.registerMsg = this.highlightMessage(errMsg);
-              this.createRegistrationDlg();
-            });
-          }
-        },{
           text: 'Cancel',
           handler: data => {
             console.log('Cancel clicked');
@@ -89,7 +92,7 @@ export class SignupComponent {
           text: 'Login',
           handler: data => {
             this.userDataProvider.loginUser(data.email, data.password)
-            .then(user => {})
+            .then(user => this.fireSuccessEvent(user))
             .catch(errMsg => {
               this.loginMsg = this.highlightMessage(errMsg);
               this.createLoginDlg();
@@ -122,5 +125,10 @@ export class SignupComponent {
 
   highlightMessage(msg: string) {
     return "<div class='errMsg' style='color:red'>"+msg+"</div>";
+  }
+
+  fireSuccessEvent(user: any) {
+    let userModel: IUserModel = {name: user.name, email: user.email};
+    this.signedInUser.emit(userModel);
   }
 }
