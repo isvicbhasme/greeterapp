@@ -63,9 +63,6 @@ export class UserdataProvider {
   setUserToStore(user: firebase.User) {
     let userinfo: IUserModel = { name: user.displayName, email: user.email }
     this.nativeStorage.setItem('userinfo', userinfo)
-      .catch(error => {
-        alert(error);
-        console.log(error);
-      });
+      .catch(error => console.log(error));
   }
 }

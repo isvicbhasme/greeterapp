@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { AngularFireDatabase } from 'angularfire2/database';
+import { IBroadcastFeed } from "../../models/ibroadcastfeed";
 
 @Injectable()
 export class DbmodelProvider {
@@ -16,7 +17,7 @@ export class DbmodelProvider {
         .limitToLast(options.limit)
         .once("value")
         .then(data => {
-          let array = [];
+          let array: Array<IBroadcastFeed> = [];
           for(var v in data.val()) {
             array.push(data.val()[v]);
           }

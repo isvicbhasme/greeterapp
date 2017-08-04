@@ -19,6 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserdataProvider } from '../providers/userdata/userdata';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { DbmodelProvider } from '../providers/dbmodel/dbmodel';
+import { StoragemodelProvider } from '../providers/storagemodel/storagemodel';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDIhxcXTOFr3kG02KH9doKkmwAr4UMu__Q",
@@ -60,6 +61,7 @@ export const firebaseConfig = {
     UserdataProvider,
     NativeStorage,
     DbmodelProvider,
+    StoragemodelProvider,
   ]
 })
 export class AppModule {}
