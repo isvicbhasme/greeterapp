@@ -10,14 +10,15 @@ import { DbmodelProvider } from "../../providers/dbmodel/dbmodel";
 })
 export class HomePage {
 
-  feeds : any;
+  feeds: Array<any> = [];
 
   constructor(public navCtrl: NavController,
-              private dbProvider: DbmodelProvider) {
+    private dbProvider: DbmodelProvider) {
   }
 
   ionViewDidLoad() {
-    this.dbProvider.fetchBroadcastContent({test:1}).then(data => console.log(data));
-    
+    this.dbProvider.fetchBroadcastContent({ limit: 10 })
+      .then(data => this.feeds = data);
+
   }
 }
