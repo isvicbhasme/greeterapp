@@ -11,7 +11,7 @@ import { IBroadcastFeed } from "../../models/ibroadcastfeed";
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  public title: string = "Article"
   feeds: Array<IBroadcastFeed> = [];
 
   constructor(public navCtrl: NavController,
@@ -20,7 +20,9 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this.storageProvider.getBroadcastContent().then(content => this.feeds = content);
+    this.storageProvider.getBroadcastContent()
+    .then(content => this.feeds = content)
+    .catch(err => console.log("Could not fetch from local store: "+err));
     this.dbProvider.fetchBroadcastContent({ limit: 10 })
       .then(data => {
         this.feeds = data;

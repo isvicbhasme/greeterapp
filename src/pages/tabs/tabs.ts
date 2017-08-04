@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AboutPage } from '../about/about';
+import { LeavePage } from '../leave/leave';
 import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 import { UserdataProvider } from '../../providers/userdata/userdata';
@@ -13,7 +13,7 @@ export class TabsPage {
 
   isUserDataInStore: boolean = false;
   tab1Root = HomePage;
-  tab2Root = AboutPage;
+  tab2Root = LeavePage;
   tab3Root = ContactPage;
 
   constructor(private userProvider: UserdataProvider) {
