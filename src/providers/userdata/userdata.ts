@@ -52,12 +52,12 @@ export class UserdataProvider {
 
   getUserFromStore(): Promise<IUserModel> {
     if(!this.platform.is('cordova')) {
-      return new Promise((resolve, reject) => resolve({ name: "Tester", email: "test@dev.com" }));
+      return new Promise((resolve, reject) => resolve({ name: "Tester", email: "test@dev.com", uid: "DoRhhQ3i5lOmqbYBRptnZVAAWSe2" }));
     }
     return new Promise((resolve, reject) => {
       this.nativeStorage.getItem('userinfo')
         .then(data => {
-          let user: IUserModel = { name: data.displayName, email: data.email };
+          let user: IUserModel = { name: data.displayName, email: data.email, uid: data.uid };
           resolve(user);
         }).catch(error => {
           reject("Could not fetch userinfo from storage\n" + JSON.stringify(error));
@@ -69,7 +69,7 @@ export class UserdataProvider {
     if(!this.platform.is('cordova')) {
       return;
     }
-    let userinfo: IUserModel = { name: user.displayName, email: user.email }
+    let userinfo: IUserModel = { name: user.displayName, email: user.email, uid: user.uid }
     this.nativeStorage.setItem('userinfo', userinfo)
       .catch(error => console.log(error));
   }

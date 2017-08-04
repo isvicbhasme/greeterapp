@@ -128,7 +128,7 @@ export class SignupComponent {
   }
 
   fireSuccessEvent(user: any) {
-    let userModel: IUserModel = {name: user.name, email: user.email};
+    let userModel: IUserModel = {name: user.name, email: user.email, uid: user.uid};
     this.signedInUser.emit(userModel);
   }
 }

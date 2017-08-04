@@ -18,7 +18,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserdataProvider } from '../providers/userdata/userdata';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { DbmodelProvider } from '../providers/dbmodel/dbmodel';
+import { BroadcastDbModelProvider } from '../providers/dbmodel/broadcastdbmodel';
+import { LeaveDbModelProvider } from '../providers/dbmodel/leavedbmodel';
 import { StoragemodelProvider } from '../providers/storagemodel/storagemodel';
 
 export const firebaseConfig = {
@@ -60,7 +61,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserdataProvider,
     NativeStorage,
-    DbmodelProvider,
+    BroadcastDbModelProvider,
+    LeaveDbModelProvider,
     StoragemodelProvider,
   ]
 })

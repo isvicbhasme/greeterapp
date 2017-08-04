@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseListObservable } from 'angularfire2/database';
 
-import { DbmodelProvider } from "../../providers/dbmodel/dbmodel";
+import { BroadcastDbModelProvider } from "../../providers/dbmodel/broadcastdbmodel";
 import { StoragemodelProvider } from "../../providers/storagemodel/storagemodel";
 import { IBroadcastFeed } from "../../models/ibroadcastfeed";
 
@@ -15,7 +15,7 @@ export class HomePage {
   feeds: Array<IBroadcastFeed> = [];
 
   constructor(public navCtrl: NavController,
-    private dbProvider: DbmodelProvider,
+    private dbProvider: BroadcastDbModelProvider,
     private storageProvider: StoragemodelProvider,) {
   }
 
