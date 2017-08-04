@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Platform } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import 'rxjs/add/operator/map';
 import * as firebase from 'firebase/app';
@@ -10,7 +11,8 @@ import { IUserModel } from '../../models/iusermodel';
 export class UserdataProvider {
 
   constructor(private ngFireAuth: AngularFireAuth,
-    private nativeStorage: NativeStorage)
+    private nativeStorage: NativeStorage,
+    private platform: Platform)
   { }
 
   createUser(name: string, email: string, password: string): Promise<any> {
@@ -49,6 +51,9 @@ export class UserdataProvider {
   }
 
   getUserFromStore(): Promise<IUserModel> {
+    if(!this.platform.is('cordova')) {
+      return new Promise((resolve, reject) => resolve({ name: "Tester", email: "test@dev.com" }));
+    }
     return new Promise((resolve, reject) => {
       this.nativeStorage.getItem('userinfo')
         .then(data => {
@@ -61,6 +66,9 @@ export class UserdataProvider {
   }
 
   setUserToStore(user: firebase.User) {
+    if(!this.platform.is('cordova')) {
+      return;
+    }
     let userinfo: IUserModel = { name: user.displayName, email: user.email }
     this.nativeStorage.setItem('userinfo', userinfo)
       .catch(error => console.log(error));
