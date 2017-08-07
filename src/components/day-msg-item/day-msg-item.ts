@@ -6,10 +6,20 @@ import { Component, Input } from '@angular/core';
 })
 export class DayMsgItemComponent {
 
-  @Input('content') content: string;
-  @Input('day') day: string;
-  @Input('date') date: number;
+  @Input('leaveOn') timestamp: number;
+  @Input('reason') content: string;
+  day: string;
+  date: number;
 
-  constructor() { }
+  constructor() {
+    
+   }
+
+   ngOnInit() {
+    let leaveDate = new Date(this.timestamp);
+    let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+    this.day = days[leaveDate.getDay()];
+    this.date = leaveDate.getDate();
+   }
 
 }

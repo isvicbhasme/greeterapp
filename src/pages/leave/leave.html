@@ -13,12 +13,11 @@
       April 2017
     </ion-card-header>
     <hr/>
-    <ion-list >
-      <!-- <day-msg-item day="{{leave.day}}" date="leave.date" content="leave.content"></day-msg-item> -->
-      <p *ngFor="let leave of leaves | async">{{leave.content}}</p>
+    <ion-list>
+      <div *ngFor="let leave of leaves | async">
+        <day-msg-item [leaveOn]="leave.leaveOn" [reason]="leave.reason"></day-msg-item> 
+      </div>
+      <!-- <p *ngFor="let leave of leaves | async">{{leave.reason}}</p> -->
     </ion-list>
   </ion-card>
-  <div *ngFor="let leave of leaves | async">
-    {{leave}}
-  </div>
 </ion-content>
