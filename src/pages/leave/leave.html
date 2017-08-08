@@ -9,15 +9,14 @@
 
 <ion-content>
   <ion-card>
-    <ion-card-header color="primary">
+    <!-- <ion-card-header color="primary">
       April 2017
     </ion-card-header>
-    <hr/>
+    <hr/> -->
     <ion-list>
       <div *ngFor="let leave of leaves | async">
         <day-msg-item [leaveOn]="leave.leaveOn" [reason]="leave.reason"></day-msg-item> 
       </div>
-      <!-- <p *ngFor="let leave of leaves | async">{{leave.reason}}</p> -->
     </ion-list>
   </ion-card>
 </ion-content>
