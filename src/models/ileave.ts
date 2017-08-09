@@ -1,4 +1,4 @@
 export interface ILeave {
-  date: Date,
-  content: string
+  leaveOn: number,
+  reason: string
 }

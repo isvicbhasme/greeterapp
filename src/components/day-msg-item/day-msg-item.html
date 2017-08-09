@@ -1,10 +1,17 @@
-<ion-item>
-  <ion-avatar item-start>
-    <div>
-      <span class="date">{{date}}</span>
-      <span class="month">{{month}}</span>
-    </div>
-    <div class="year">{{year}}</div>
-  </ion-avatar>
-  <p class="msg">{{content}}</p>
-</ion-item>
+<ion-card>
+  <ion-card-content>
+    <ion-grid no-padding>
+      <ion-row align-items-center>
+        <ion-col col-2>
+          <div class="date">
+            <span>{{date}}</span>
+          </div>
+          <div class="small">{{month}} {{year}}</div>
+        </ion-col>
+        <ion-col>
+          <p class="msg">{{content}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

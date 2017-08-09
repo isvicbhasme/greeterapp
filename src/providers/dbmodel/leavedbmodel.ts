@@ -19,7 +19,7 @@ export class LeaveDbModelProvider {
     // this.userProvider.getUserFromStore().then(user => {
     //   uid = user.uid
       // console.log("Pushing :"+this.ngFireDb.list("/leaves/DoRhhQ3i5lOmqbYBRptnZVAAWSe2"));
-      return this.ngFireDb.list("/leaves/yEUZBANHuoM8grHSkErEMVdqE9u1");
+      return this.ngFireDb.list("/leaves/"+options.uid);
       // console.log(this.ngFireDb.list("/leaves/"+uid));
       // this.ngFireDb.database.ref("/leaves/" + uid)
       //   .orderByKey()

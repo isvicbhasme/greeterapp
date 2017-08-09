@@ -52,7 +52,7 @@ export class UserdataProvider {
 
   getUserFromStore(): Promise<IUserModel> {
     if(!this.platform.is('cordova')) {
-      return new Promise((resolve, reject) => resolve({ name: "Tester", email: "test@dev.com", uid: "DoRhhQ3i5lOmqbYBRptnZVAAWSe2" }));
+      return new Promise((resolve, reject) => resolve({ name: "Tester", email: "test@dev.com", uid: "yEUZBANHuoM8grHSkErEMVdqE9u1" }));
     }
     return new Promise((resolve, reject) => {
       this.nativeStorage.getItem('userinfo')

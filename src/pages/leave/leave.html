@@ -8,15 +8,12 @@
 
 
 <ion-content>
-  <ion-card>
-    <!-- <ion-card-header color="primary">
-      April 2017
-    </ion-card-header>
-    <hr/> -->
-    <ion-list>
-      <div *ngFor="let leave of leaves | async">
-        <day-msg-item [leaveOn]="leave.leaveOn" [reason]="leave.reason"></day-msg-item> 
-      </div>
-    </ion-list>
-  </ion-card>
+  <ion-fab bottom right>
+    <button ion-fab (click)="shouldLeaveFormBeShown = true"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+  <leave-form *ngIf="shouldLeaveFormBeShown" (newLeaveEvent)="handleNewLeaveEvent($event)"></leave-form>
+  <div *ngFor="let leave of leaves | async">
+    <day-msg-item [leaveOn]="leave.leaveOn" [reason]="leave.reason"></day-msg-item>
+  </div>
+
 </ion-content>
