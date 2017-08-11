@@ -1,5 +1,5 @@
-<ion-card>
-  <ion-card-content>
+<ion-item-sliding>
+  <ion-item text-wrap>
     <ion-grid no-padding>
       <ion-row align-items-center>
         <ion-col col-2>
@@ -13,5 +13,11 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-card-content>
-</ion-card>
+  </ion-item>
+  <ion-item-options>
+    <button ion-button color="danger" (click)="deleteLeave()">
+      <ion-icon name="trash"></ion-icon>
+      Delete
+    </button>
+  </ion-item-options>
+</ion-item-sliding>

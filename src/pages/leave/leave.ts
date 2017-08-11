@@ -29,4 +29,8 @@ export class LeavePage {
     this.leaves.push(leave);
   }
 
+  handleDeleteLeaveEvent(leave) {
+    this.leaves.remove(leave);
+  }
+
 }

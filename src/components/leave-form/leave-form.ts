@@ -11,6 +11,7 @@ export class LeaveFormComponent {
 
   private leaveDlg: any;
   @Output() newLeaveEvent = new EventEmitter();
+  @Output() cancelEvent = new EventEmitter();
 
   constructor(public alertCtrl: AlertController) {  }
 
@@ -49,6 +50,7 @@ export class LeaveFormComponent {
           text: 'Cancel',
           handler: data => {
             console.log('Cancel clicked');
+            this.cancelEvent.emit();
           }
         },
       ]

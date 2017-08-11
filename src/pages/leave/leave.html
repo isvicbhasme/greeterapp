@@ -11,9 +11,10 @@
   <ion-fab bottom right>
     <button ion-fab (click)="shouldLeaveFormBeShown = true"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
-  <leave-form *ngIf="shouldLeaveFormBeShown" (newLeaveEvent)="handleNewLeaveEvent($event)"></leave-form>
-  <div *ngFor="let leave of leaves | async">
-    <day-msg-item [leaveOn]="leave.leaveOn" [reason]="leave.reason"></day-msg-item>
-  </div>
-
+  <leave-form *ngIf="shouldLeaveFormBeShown" (newLeaveEvent)="handleNewLeaveEvent($event)" (cancelEvent)="shouldLeaveFormBeShown=false"></leave-form>
+  <ion-list>
+    <div *ngFor="let leave of leaves | async">
+        <day-msg-item [leaveOn]="leave.leaveOn" [reason]="leave.reason" (deleteEvent)="handleDeleteLeaveEvent(leave)"></day-msg-item>
+    </div>
+  </ion-list>
 </ion-content>
