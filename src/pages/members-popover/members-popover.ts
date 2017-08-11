@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 @Component({
   selector: 'page-members-popover',
@@ -7,18 +7,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MembersPopoverPage {
 
-  showPhotoChangeDlg = false;
+  showFileSelector = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MembersPopoverPage');
-  }
-
+  constructor() {  }
 
   changeProfilePhoto() {
-
+    this.showFileSelector = true;
   }
 
 }
