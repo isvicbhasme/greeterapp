@@ -8,7 +8,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { LeavePage } from '../pages/leave/leave';
-import { ContactPage } from '../pages/contact/contact';
+import { MembersPage } from '../pages/members/members';
 import { HomePage } from '../pages/home/home';
 import { MembersPopoverPage } from '../pages/members-popover/members-popover';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -39,7 +39,7 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     LeavePage,
-    ContactPage,
+    MembersPage,
     HomePage,
     TabsPage,
     MembersPopoverPage
@@ -56,7 +56,7 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     LeavePage,
-    ContactPage,
+    MembersPage,
     HomePage,
     TabsPage,
     MembersPopoverPage

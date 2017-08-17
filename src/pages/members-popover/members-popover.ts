@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { ViewController } from 'ionic-angular';
+
+import * as Constants from "../../models/constants";
 
 @Component({
   selector: 'page-members-popover',
@@ -7,12 +9,12 @@ import { IonicPage } from 'ionic-angular';
 })
 export class MembersPopoverPage {
 
-  showFileSelector = false;
-
-  constructor() {  }
+  constructor(public viewCtrl: ViewController) {  }
 
   changeProfilePhoto() {
-    this.showFileSelector = true;
+    let selection = {};
+    selection[Constants.SELECTED_ITEM] = Constants.CHANGE_PROFILE_PHOTO;
+    this.viewCtrl.dismiss(selection);
   }
 
 }
